@@ -20,42 +20,6 @@ public class Employee {
         this.salary = salary;
     }
 
-    //Сортировка сотрудников по имени
-    public static List<Employee> sortByName(Collection<Employee> list) {
-        return list.stream()
-                .sorted(Comparator.comparing(Employee::getName))
-                .collect(Collectors.toList());
-    }
-
-    //Получение числа сотрудников мужского пола
-    public static int filterMale(Collection<Employee> list) {
-        long collect = list.stream()
-                .filter(employee -> employee.getSex() == Sex.MAN).count();
-        return (int) collect;
-    }
-
-    //Получение имени самого взрослого сотрудника
-    public static String getMaxAge(Collection<Employee> list) {
-        Employee max = list.stream()
-                .max(Comparator.comparing(Employee::getAge)).get();
-        return max.getName();
-    }
-
-    //Получение средней заработной платы сотрудников
-    public static int getAverageSalary(Collection<Employee> list) {
-        int salary = 0;
-        for (Employee employee : list) {
-            salary += employee.getSalary();
-        }
-        int numberOfEmployee = list.size();
-        return salary / numberOfEmployee;
-    }
-
-    //Количество сотрудников всего
-    public static int getNumberEmployees(Collection<Employee> list) {
-        return list.size();
-    }
-
     public String getName() {
         return name;
     }
@@ -96,6 +60,42 @@ public class Employee {
     @Override
     public int hashCode() {
         return Objects.hash(name, age, sex, salary);
+    }
+
+    //Сортировка сотрудников по имени
+    public static List<Employee> sortByName(Collection<Employee> list) {
+        return list.stream()
+                .sorted(Comparator.comparing(Employee::getName))
+                .collect(Collectors.toList());
+    }
+
+    //Получение числа сотрудников мужского пола
+    public static int filterMale(Collection<Employee> list) {
+        long collect = list.stream()
+                .filter(employee -> employee.getSex() == Sex.MAN).count();
+        return (int) collect;
+    }
+
+    //Получение имени самого взрослого сотрудника
+    public static String getMaxAge(Collection<Employee> list) {
+        Employee max = list.stream()
+                .max(Comparator.comparing(Employee::getAge)).get();
+        return max.getName();
+    }
+
+    //Получение средней заработной платы сотрудников
+    public static int getAverageSalary(Collection<Employee> list) {
+        int salary = 0;
+        for (Employee employee : list) {
+            salary += employee.getSalary();
+        }
+        int numberOfEmployee = list.size();
+        return salary / numberOfEmployee;
+    }
+
+    //Количество сотрудников всего
+    public static int getNumberEmployees(Collection<Employee> list) {
+        return list.size();
     }
 }
 
